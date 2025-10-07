@@ -1,0 +1,9 @@
+node_modules
+.git
+.gitignore
+dist
+docs/assets
+public/assets
+*.log
+README.md
+/*.map
