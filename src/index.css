@@ -18,6 +18,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Animation keyframes */
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0) scale(1.05); }
+  50% { transform: translateY(-10px) scale(1.05); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradient-text {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-subtle-float {
+  animation: subtle-float 15s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+.animate-gradient-text {
+  background: linear-gradient(90deg, #f43f5e, #8b5cf6, #f43f5e);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-text 8s linear infinite;
+}
+
+.delay-0 { animation-delay: 0s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-400 { animation-delay: 0.4s; }
+
 /* The Origin Podcast Design System - Dark, Futuristic, Neon */
 
 @layer base {

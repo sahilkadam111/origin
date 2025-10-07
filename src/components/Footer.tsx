@@ -5,10 +5,11 @@ import { useState, useEffect, createElement } from "react";
 import useActiveSection from "@/hooks/useActiveSection";
 import { useToast } from "@/hooks/use-toast";
 import originLogo from "@/assets/origin logo.png";
+import { socialLinks } from "@/config/social";
 import ep1Thumb from "@/assets/episode-1.jpg";
 import ep2Thumb from "@/assets/episode-2.jpg";
 import ep3Thumb from "@/assets/episode-3.jpg";
-import { Linkedin, Instagram, Youtube, Facebook, Music4, Mail, ArrowUp, Phone } from "lucide-react";
+import { Mail, ArrowUp } from "lucide-react";
 
 export default function Footer(): JSX.Element {
   const [email, setEmail] = useState("");
@@ -45,17 +46,10 @@ export default function Footer(): JSX.Element {
     { id: 3, title: "Black Holes", description: "Journey into the unknown", thumbnail: ep3Thumb },
   ];
 
-  const socialLinks = [
-    { name: "LinkedIn", href: "#", icon: Linkedin, color: "hover:text-[#0A66C2]", hoverBg: "hover:bg-[#0A66C2]/10", hoverBorder: "hover:border-[#0A66C2]/50" },
-    { name: "Instagram", href: "#", icon: Instagram, color: "hover:text-[#E4405F]", hoverBg: "hover:bg-[#E4405F]/10", hoverBorder: "hover:border-[#E4405F]/50" },
-    { name: "Youtube", href: "#", icon: Youtube, color: "hover:text-[#FF0000]", hoverBg: "hover:bg-[#FF0000]/10", hoverBorder: "hover:border-[#FF0000]/50" },
-    { name: "Facebook", href: "#", icon: Facebook, color: "hover:text-[#1877F2]", hoverBg: "hover:bg-[#1877F2]/10", hoverBorder: "hover:border-[#1877F2]/50" },
-    { name: "Spotify", href: "#", icon: Music4, color: "hover:text-[#1DB954]", hoverBg: "hover:bg-[#1DB954]/10", hoverBorder: "hover:border-[#1DB954]/50" },
-    { name: "WhatsApp", href: "https://wa.me/1234567890", icon: Phone, color: "hover:text-[#25D366]", hoverBg: "hover:bg-[#25D366]/10", hoverBorder: "hover:border-[#25D366]/50" },
-  ];
+
 
   const quickLinks = [
-    { name: "About Us", href: "#about", id: "about" },
+    { name: "About us", href: "#about", id: "about" },
     { name: "Episodes", href: "#episodes", id: "episodes" },
     { name: "Contact", href: "#contact", id: "contact" },
     { name: "Privacy Policy", href: "#privacy" },
@@ -83,15 +77,29 @@ export default function Footer(): JSX.Element {
                   </div>
                 </div>
               </div>
-              <p className="text-muted-foreground">Every Story Has a Beginning.</p>
+              {/* tagline removed per request */}
+              {/* Social icons under brand */}
+              <div className="mt-4">
+                <div className="flex items-center gap-3">
+                  {socialLinks.filter((s) => s.url && s.url.length > 0).map((s) => {
+                    const Icon = s.icon;
+                    return (
+                      <a
+                        key={s.name}
+                        href={s.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`p-2 rounded-md ${s.colorClass} hover:bg-accent/5 transition-colors duration-200`}
+                        aria-label={`Open ${s.name}`}
+                      >
+                        <Icon className="w-5 h-5" />
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
-            <div className="flex flex-wrap gap-3">
-              {socialLinks.map((social) => (
-                <a key={social.name} href={social.href} className={cn("w-10 h-10 flex items-center justify-center rounded-lg border border-border transition-all duration-300 text-muted-foreground group", social.color, social.hoverBg, social.hoverBorder, "hover:scale-110 hover:shadow-lg")} aria-label={social.name}>
-                  {createElement(social.icon, { size: 18, className: "transition-transform duration-300 group-hover:scale-110" })}
-                </a>
-              ))}
-            </div>
+
           </div>
 
           <div className="space-y-4">
@@ -117,6 +125,7 @@ export default function Footer(): JSX.Element {
                 </li>
               ))}
             </ul>
+            
           </div>
 
           <div className="space-y-4">

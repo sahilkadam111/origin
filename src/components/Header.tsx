@@ -101,25 +101,18 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-3">
-          {[
-            { id: 'home', label: 'Home' },
-            { id: 'episodes', label: 'Streaming' },
-            { id: 'about', label: 'About Us' },
-            { id: 'contact', label: 'Contact' },
-          ].map((item) => (
+          { /* navigation removed per request */ }
+          {[]?.map((item) => (
             <button
-              key={item.id}
+              key={item?.id}
               onClick={() => {
-                if (item.id === 'home') {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                  scrollToSection(item.id);
-                }
+                if (item?.id) scrollToSection(item.id);
+                else window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              aria-current={activeSection === item.id ? 'page' : undefined}
-              className={buttonStyles(item.id)}
+              aria-current={activeSection === item?.id ? 'page' : undefined}
+              className={buttonStyles(item?.id ?? '')}
             >
-              <span className="relative z-10">{item.label}</span>
+              <span className="relative z-10">{item?.label}</span>
             </button>
           ))}
         </nav>
@@ -146,28 +139,21 @@ const Header = () => {
               className="w-full max-w-xs border-accent/20 bg-background/95 backdrop-blur-md p-6"
             >
               <nav className="flex flex-col space-y-3 mt-8">
-                {[
-                  { id: 'home', label: 'Home' },
-                  { id: 'episodes', label: 'Streaming' },
-                  { id: 'about', label: 'About Us' },
-                  { id: 'contact', label: 'Contact' },
-                ].map((item) => (
+                { /* mobile nav removed per request */ }
+                {[]?.map((item) => (
                   <button
-                    key={item.id}
+                    key={item?.id}
                     onClick={() => {
-                      if (item.id === 'home') {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      } else {
-                        scrollToSection(item.id);
-                      }
+                      if (item?.id) scrollToSection(item.id);
+                      else window.scrollTo({ top: 0, behavior: 'smooth' });
                       setIsOpen(false);
                     }}
                     className={cn(
-                      buttonStyles(item.id),
+                      buttonStyles(item?.id ?? ''),
                       "w-full justify-center text-left px-6"
                     )}
                   >
-                    <span className="relative z-10">{item.label}</span>
+                    <span className="relative z-10">{item?.label}</span>
                   </button>
                 ))}
               </nav>
