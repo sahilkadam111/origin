@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment
+.env
+.env.*
+
+# Vite / build outputs
+dist/
+public/assets/
+docs/assets/
+
+# OS files
+Thumbs.db

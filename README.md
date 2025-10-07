@@ -4,6 +4,27 @@
 
 **URL**: https://lovable.dev/projects/418ec39a-d6f2-48eb-b9e6-4d9ed1bf3f31
 
+````markdown
+# Quick start (local)
+
+Run locally (Windows PowerShell):
+
+```powershell
+cd "C:\Users\SAHIL KADAM\OneDrive\Desktop\origin-story-web-backup 2\origin-story-web-backup\origin-story-web-backup"
+npm install
+npm run dev
+```
+
+If you prefer ssh or have authentication issues when pushing to GitHub, see the README section below for details.
+
+---
+
+# Welcome to your Lovable project
+
+## Project info
+
+**URL**: https://lovable.dev/projects/418ec39a-d6f2-48eb-b9e6-4d9ed1bf3f31
+
 ## How can I edit this code?
 
 There are several ways of editing your application.
@@ -71,3 +92,5 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+````
