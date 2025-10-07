@@ -87,7 +87,7 @@ const Header = () => {
               src={originLogo} 
               alt="Origin Story Logo" 
               className={cn(
-                "h-14 md:h-20 w-auto relative cursor-pointer",
+                "h-20 md:h-28 w-auto relative cursor-pointer",
                 "transition-all duration-300",
                 "group-hover:brightness-125",
                 "group-hover:scale-105"
