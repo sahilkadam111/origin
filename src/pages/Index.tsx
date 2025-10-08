@@ -23,7 +23,7 @@ const Index = () => {
         {/* Opening intro: bold, inviting, and unique */}
         <section className="py-10 bg-gradient-to-b from-transparent via-muted-50 to-transparent">
           <div className="max-w-4xl mx-auto text-center px-6">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text tracking-normal leading-relaxed">Welcome To The Origin</h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal mb-6 gradient-text tracking-normal leading-relaxed">Welcome To The Origin</h2>
             <p className="text-lg md:text-xl leading-relaxed" style={{ color: '#ccffff' }}>
               A powerful portal to launch your grand story through a grand scheme of deep insights, a dynamic connection which transcends aspirations, dreams and ambitions, a metaphor for glory and for legacies untold and awaiting to unfold.
             </p>
