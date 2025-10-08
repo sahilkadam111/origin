@@ -5,17 +5,17 @@ import useActiveSection from "@/hooks/useActiveSection"
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
 import originLogo from "@/assets/origin logo.png"
 
-// Custom hamburger menu component
+// Custom hamburger menu component (larger)
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => {
   return (
-    <div className="relative w-6 h-6 cursor-pointer">
+    <div className="relative w-8 h-8 cursor-pointer">
       <span className={cn(
         "absolute h-[2px] bg-current transition-all duration-300 ease-in-out transform",
         "before:absolute before:h-[2px] before:bg-current before:transition-all before:duration-300 before:content-['']",
         "after:absolute after:h-[2px] after:bg-current after:transition-all after:duration-300 after:content-['']",
-        "w-6 top-1/2 -translate-y-1/2",
-        "before:w-6 before:-top-2",
-        "after:w-6 after:top-2",
+        "w-8 top-1/2 -translate-y-1/2",
+        "before:w-8 before:-top-2",
+        "after:w-8 after:top-2",
         isOpen && [
           "bg-transparent",
           "before:rotate-45 before:translate-y-2",
@@ -123,7 +123,7 @@ const Header = () => {
                 variant="ghost"
                 size="icon"
                 className={cn(
-                  "hidden md:inline-flex w-10 h-10 rounded-full",
+                  "hidden md:inline-flex w-12 h-12 rounded-full",
                   "border border-transparent",
                   "hover:border-accent/30 hover:bg-accent/10",
                   "transition-all duration-300"
@@ -142,7 +142,7 @@ const Header = () => {
                 variant="ghost" 
                 size="icon"
                 className={cn(
-                  "relative w-10 h-10 rounded-full",
+                  "relative w-12 h-12 rounded-full",
                   "border border-transparent",
                   "hover:border-accent/30 hover:bg-accent/10",
                   "transition-all duration-300"
