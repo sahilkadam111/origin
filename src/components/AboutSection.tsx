@@ -7,7 +7,7 @@ export default function AboutSection() {
 
       <div className="relative max-w-4xl mx-auto z-10">
         <div className="bg-card/60 backdrop-blur-md rounded-2xl p-10 md:p-14 text-center shadow-lg">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text tracking-normal leading-relaxed">About us</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal mb-6 gradient-text tracking-normal leading-relaxed">About us</h2>
           <p className="text-accent font-medium mb-4 tracking-wide uppercase">Where it All Begins…..</p>
 
           <div className="mx-auto max-w-3xl">

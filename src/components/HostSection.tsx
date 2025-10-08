@@ -1,6 +1,7 @@
 import hostImage from "../assets/mehak-host.png";
 import jasbirImage from "../assets/jasbir-host.png";
 import { Mic, Radio, Headphones } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function HostSection({
   showTitle = true,
@@ -28,10 +29,15 @@ export default function HostSection({
                 <img src={portraitSrc} alt={`${hostName} - Host`} className="w-full h-full object-cover" />
               </div>
 
-              {/* Badge CTA */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-accent to-primary text-white px-4 py-2 rounded-full shadow-xl text-sm font-semibold">
-                <Mic className="inline-block w-4 h-4 mr-2 align-middle" /> Listen & Subscribe
-              </div>
+              {/* Badge CTA -> Connect button scrolls to #contact */}
+              <Button
+                type="button"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                variant="default"
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-full shadow-xl text-sm font-normal hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              >
+                <Mic className="inline-block w-4 h-4 mr-2 align-middle" /> Connect
+              </Button>
             </div>
           </div>
 
@@ -39,11 +45,11 @@ export default function HostSection({
           <div className="lg:col-span-7">
             {showTitle && (
               <div className="mb-6">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold gradient-text tracking-normal leading-relaxed mb-6">Meet the Host</h2>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal gradient-text tracking-normal leading-relaxed mb-6">Meet the Host</h2>
               </div>
             )}
 
-            <h3 className="text-2xl font-semibold text-foreground mb-4">{hostName}</h3>
+            <h3 className="text-2xl font-normal text-foreground mb-4">{hostName}</h3>
 
             {hostBullets.map((b, i) => (
               <p key={i} className="text-lg text-muted-foreground leading-relaxed mb-2">
@@ -84,11 +90,11 @@ export function HostSectionMirrored({
           <div className="lg:col-span-7 order-1 lg:order-1">
             {showTitle && (
               <div className="mb-6">
-                <h2 className="text-4xl md:text-5xl font-extrabold gradient-text mb-4">Meet the Host</h2>
+                <h2 className="text-4xl md:text-5xl font-normal gradient-text mb-4">Meet the Host</h2>
               </div>
             )}
 
-            <h3 className="text-2xl font-semibold text-foreground mb-4">{hostName}</h3>
+            <h3 className="text-2xl font-normal text-foreground mb-4">{hostName}</h3>
 
             {hostBullets.map((b, i) => (
               <p key={i} className="text-lg text-muted-foreground leading-relaxed mb-2">
@@ -106,9 +112,14 @@ export function HostSectionMirrored({
                 <img src={portraitSrc} alt={`${hostName} - Host mirrored`} className="w-full h-full object-cover" />
               </div>
 
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-accent to-primary text-white px-4 py-2 rounded-full shadow-xl text-sm font-semibold">
-                <Mic className="inline-block w-4 h-4 mr-2 align-middle" /> Listen & Subscribe
-              </div>
+              <Button
+                type="button"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                variant="default"
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-full shadow-xl text-sm font-normal hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              >
+                <Mic className="inline-block w-4 h-4 mr-2 align-middle" /> Connect
+              </Button>
             </div>
           </div>
         </div>

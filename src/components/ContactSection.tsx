@@ -1,10 +1,22 @@
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Mail } from "lucide-react";
-import { useState } from "react";
 import contactConfig from "@/config/contactConfig";
 
+type FormState = {
+  name: string;
+  contactNo: string;
+  email: string;
+  message: string;
+};
+
 export default function ContactSection() {
-  const [form, setForm] = useState({ name: "", contactNo: "", email: "", message: "" });
+  const [form, setForm] = useState<FormState>({
+    name: "",
+    contactNo: "",
+    email: "",
+    message: "",
+  });
   const [showMessage, setShowMessage] = useState(false);
   const [status, setStatus] = useState<null | "idle" | "sending" | "sent" | "error">("idle");
   const [errors, setErrors] = useState<{ name?: string; contactNo?: string; email?: string }>({});
@@ -12,28 +24,25 @@ export default function ContactSection() {
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target;
     setForm((s) => ({ ...s, [name]: value }));
-    // Clear field error as user types
     setErrors((prev) => ({ ...prev, [name]: undefined }));
   }
 
   function validateForm() {
     const next: { name?: string; contactNo?: string; email?: string } = {};
     if (!form.name.trim()) next.name = "Name is required.";
-    // allow only digits and require 10 digits
     if (!/^[0-9]{10}$/.test(form.contactNo)) next.contactNo = "Enter a 10-digit mobile number (digits only).";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = "Enter a valid email address.";
-
     setErrors(next);
     return Object.keys(next).length === 0;
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // run validation
     if (!validateForm()) {
       setStatus("error");
       return;
     }
+
     setStatus("sending");
     try {
       const endpoint = contactConfig.CONTACT_ENDPOINT;
@@ -43,25 +52,19 @@ export default function ContactSection() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(form),
         });
-
         if (!res.ok) throw new Error("Network response was not ok");
         setStatus("sent");
         setForm({ name: "", contactNo: "", email: "", message: "" });
-        } else {
-        // Fallback to mailto with prefilled subject/body
+      } else {
         const subject = encodeURIComponent("Contact from website: " + form.name);
-        // Use actual newlines and let encodeURIComponent escape them correctly
         const body = encodeURIComponent(
           `Name: ${form.name}\nContact: ${form.contactNo}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
         );
         const mailtoUrl = `mailto:contact@originpodcast.in?subject=${subject}&body=${body}`;
-
         try {
-          // Preferred: navigate directly to mailto (works in most browsers)
           window.location.href = mailtoUrl;
         } catch (err) {
           try {
-            // Fallback: create an anchor and click it
             const a = document.createElement("a");
             a.href = mailtoUrl;
             a.style.display = "none";
@@ -69,9 +72,7 @@ export default function ContactSection() {
             a.click();
             a.remove();
           } catch (err2) {
-            // Final fallback: copy the email address to clipboard so user can paste it manually
-            // Use standard Clipboard API if available
-            if (typeof navigator !== "undefined" && 'clipboard' in navigator && typeof navigator.clipboard.writeText === 'function') {
+            if (typeof navigator !== "undefined" && "clipboard" in navigator && typeof navigator.clipboard.writeText === "function") {
               try {
                 await navigator.clipboard.writeText("contact@originpodcast.in");
                 alert("Could not open your mail client. The email address contact@originpodcast.in has been copied to your clipboard. Please send an email manually.");
@@ -97,7 +98,7 @@ export default function ContactSection() {
     <section data-section="contact" id="contact" aria-label="Contact" className="py-20 px-6 bg-gradient-to-b from-card/60 to-card/40">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12 text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold gradient-text tracking-normal leading-relaxed mb-6">Contact & Collaborate</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal gradient-text tracking-normal leading-relaxed mb-6">Contact & Collaborate</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mt-3">
             Have an origin story, a collaboration idea, or studio inquiry? Use the form to reach out — we respond to thoughtful messages.
           </p>
@@ -108,8 +109,7 @@ export default function ContactSection() {
           <div className="space-y-6">
             <div className="glass-card p-6 rounded-2xl">
               <h3 className="text-lg font-semibold">Studio & Booking</h3>
-              <p className="text-sm text-muted-foreground mt-2">For bookings, press, and creative collaborations — drop us a line.</p>
-
+              <p className="text-sm text-muted-foreground mt-2">For bookings, press, and creative collaborations drop us a line.</p>
               <div className="mt-4">
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-accent" />
@@ -118,8 +118,6 @@ export default function ContactSection() {
                 <div className="mt-2 text-sm text-muted-foreground">Available for remote interviews and limited in-studio sessions.</div>
               </div>
             </div>
-
-
 
             <div className="text-sm text-muted-foreground">
               <strong className="text-foreground">Note:</strong> We read every message. If you don't hear back in a week, please send a gentle follow-up.
@@ -176,17 +174,11 @@ export default function ContactSection() {
                 {errors.email && <div className="mt-1 text-xs text-red-400">{errors.email}</div>}
               </div>
 
-              {/* Message is optional — reveal on demand */}
               <div>
                 <div className="flex items-center justify-between">
                   <label htmlFor="message" className="block text-sm font-medium text-foreground">Message</label>
-                  <button
-                    type="button"
-                    aria-expanded={showMessage}
-                    onClick={() => setShowMessage((s) => !s)}
-                    className="text-sm text-accent hover:underline"
-                  >
-                    {showMessage ? 'Hide message' : 'Add message'}
+                  <button type="button" aria-expanded={showMessage} onClick={() => setShowMessage((s) => !s)} className="text-sm text-accent hover:underline">
+                    {showMessage ? "Hide message" : "Add message"}
                   </button>
                 </div>
 
@@ -204,11 +196,10 @@ export default function ContactSection() {
               </div>
 
               <div className="flex items-center gap-3">
-                <Button type="submit" variant="hero" className="px-5 py-2">
-                  Send Message
-                </Button>
+                <Button type="submit" variant="hero" className="px-5 py-2">Send Message</Button>
+
                 <div className="text-sm text-muted-foreground">
-                  {status === "sent" && <span className="text-green-400">Thanks — we'll reply soon.</span>}
+                  {status === "sent" && <span className="text-green-400">Thanks, we'll reply soon.</span>}
                   {status === "sending" && <span>Sending…</span>}
                   {status === "error" && <span className="text-red-400">Please fix the highlighted fields.</span>}
                 </div>

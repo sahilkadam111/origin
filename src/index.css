@@ -87,8 +87,9 @@
 
   /* Brand Colors - Primary (light/dark) and Secondary palette */
   /* PRIMARY: #fff8f8 (very light warm) and #000082 (deep blue) */
-  --primary: 0 100% 98%; /* #fff8f8 */
-  --primary-foreground: 240 15% 4%; /* keep dark foreground for contrast when used as background */
+  /* Primary set to a solid blue (approx Tailwind blue-600) */
+  --primary: 221 89% 56%; /* blue (used as hsl: 221 89% 56%) */
+  --primary-foreground: 0 0% 100%; /* white foreground on primary */
 
   --primary-dark: 240 100% 25%; /* #000082 approximated */
 
@@ -202,8 +203,8 @@
   body {
     font-family: var(--font-primary);
     @apply bg-background text-foreground;
-    /* Use Poppins Bold as primary weight across the site */
-    font-weight: 700;
+    /* Use normal weight across the site per user request */
+    font-weight: 400;
   }
 
   /* Smooth scrolling */
@@ -216,13 +217,13 @@
   /* Utility classes for brand fonts */
   .font-primary {
     font-family: var(--font-primary) !important;
-    /* Enforce bold weight for primary font usage */
-    font-weight: 700 !important;
+    /* Use normal weight for primary font */
+    font-weight: 400 !important;
   }
 
   .font-montserrat {
     font-family: var(--font-montserrat) !important;
-    font-weight: 700 !important;
+    font-weight: 400 !important;
     letter-spacing: 0.06em;
   }
 
@@ -384,6 +385,24 @@
     border-radius: 50%;
     opacity: 0.6;
     animation: float 6s ease-in-out infinite;
+
+/* User-requested: Neutralize bold font weights site-wide */
+@layer utilities {
+  /* Tailwind utility classes that apply bold weights */
+  .font-bold, .font-extrabold, .font-semibold, .font-black, b, strong {
+    font-weight: 400 !important;
+  }
+
+  /* Ensure headings and other typical selectors do not force bold unless explicitly desired */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 400 !important;
+  }
+
+  /* Safety: body defaults to normal weight */
+  body {
+    font-weight: 400 !important;
+  }
+}
   }
 
   @keyframes float {
